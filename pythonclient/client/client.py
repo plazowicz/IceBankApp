@@ -102,6 +102,8 @@ class Flow(object):
         self.running = False
 
     def shutdown(self):
+        if self.session_token:
+            self.logout()
         status = 0
         if self.ic:
             try:
