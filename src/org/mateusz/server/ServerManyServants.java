@@ -1,5 +1,6 @@
 package org.mateusz.server;
 
+import org.mateusz.ice.ChatManagerImpl;
 import org.mateusz.ice.ManagerImpl;
 
 public class ServerManyServants extends Ice.Application {
@@ -11,6 +12,11 @@ public class ServerManyServants extends Ice.Application {
 		AccountLocator locator = new AccountLocator();
 		adapter.add(manager, communicator().stringToIdentity("Manager"));
 		adapter.addServantLocator(locator, "AccountsLocator");
+		RoomLocator roomLocator = new RoomLocator();
+		adapter.addServantLocator(new RoomLocator(), "RoomsLocator");
+		ChatManagerImpl chatManager = ChatManagerImpl.getInstance();
+		chatManager.setRoomLocator(roomLocator);
+		adapter.add(chatManager, communicator().stringToIdentity("ChatManager"));
 		adapter.activate();
 		communicator().waitForShutdown();
 		

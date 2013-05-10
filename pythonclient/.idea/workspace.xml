@@ -23,7 +23,18 @@
       <file leaf-file-name="client.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="17" selection-start="4178" selection-end="4178" vertical-scroll-proportion="0.83516484">
+            <state line="35" column="51" selection-start="1213" selection-end="1213" vertical-scroll-proportion="0.5769231">
+              <folding>
+                <element signature="e#23#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chat_client.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/chat_client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="55" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -65,6 +76,7 @@
         <option value="$PROJECT_DIR$/client/__init__.py" />
         <option value="$PROJECT_DIR$/config.client" />
         <option value="$PROJECT_DIR$/client/config.client" />
+        <option value="$PROJECT_DIR$/client/chat_client.py" />
         <option value="$PROJECT_DIR$/client/client.py" />
       </list>
     </option>
@@ -334,16 +346,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/Bank_ice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="0" selection-start="7865" selection-end="7865" vertical-scroll-proportion="0.70188135" />
+        <state line="213" column="0" selection-start="7865" selection-end="7865" vertical-scroll-proportion="0.70188135">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/config.client">
@@ -353,9 +360,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/chat_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="55" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#23#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="17" selection-start="4178" selection-end="4178" vertical-scroll-proportion="0.83516484">
+        <state line="35" column="51" selection-start="1213" selection-end="1213" vertical-scroll-proportion="0.5769231">
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>

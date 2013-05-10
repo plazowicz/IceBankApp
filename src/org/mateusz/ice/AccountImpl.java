@@ -45,7 +45,8 @@ public class AccountImpl extends _AccountDisp {
 		Account account = AccountsContainer.getInstance().getAccount(PESEL);
 		if( account == null )
 			throw new UserNotExistException("There is no user "+PESEL);
-		if( sessions.get(PESEL) != null )
+		String token = __current.ctx.get("token");
+		if( token != null && sessions.get(token) != null )
 			throw new UserAlreadyLoggedInException("User "+PESEL+" is already logged in");
 		if( !account.getPassword().equals(password) )
 			throw new IncorrectPasswordException("Password is incorrect");

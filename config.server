@@ -1,7 +1,10 @@
+#Endpoints
 RootAdapter.Endpoints=tcp -h 127.0.0.1 -p 10000
+
+#ThreadPool
 RootAdapter.ThreadPool.Size = 4
 RootAdapter.ThreadPool.SizeMax = 10
 
-
+#Ice options
 Ice.Warn.Connections=10
 Ice.ACM.Server=10

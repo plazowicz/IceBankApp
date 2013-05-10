@@ -22,8 +22,7 @@ class Flow(object):
             base = self.ic.stringToProxy("Account:default -p 10000")
             self.account = Bank.AccountPrx.checkedCast(base)
             if not self.account:
-                base = self.ic.stringToProxy("AccountsLocator:default -p 10000")
-                self.account = Bank.AccountPrx.checkedCast(base)
+                self.account = self.ic.stringToProxy("AccountsLocator:default -p 10000")
                 if not self.account:
                     raise RuntimeError("Invalid proxy")
             base = self.ic.stringToProxy("Manager:default -p 10000")
