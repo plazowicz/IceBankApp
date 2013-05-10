@@ -6,16 +6,15 @@ import Bank
 class Flow(object):
 
     def __init__(self):
-#        Ice.Application.__init__(self)
         try:
             self.running = True
             self.session_token = None
-            ic = Ice.initialize(sys.argv)
-            base = ic.stringToProxy("Account:default -p 10000")
+            self.ic = Ice.initialize(sys.argv)
+            base = self.ic.stringToProxy("Account:default -p 10000")
             self.account = Bank.AccountPrx.checkedCast(base)
             if not self.account:
                 raise RuntimeError("Invalid proxy")
-            base = ic.stringToProxy("Manager:default -p 10000")
+            base = self.ic.stringToProxy("Manager:default -p 10000")
             self.manager = Bank.ManagerPrx.checkedCast(base)
             if not self.manager:
                 raise RuntimeError("Invalid proxy")
@@ -30,10 +29,9 @@ class Flow(object):
             traceback.print_exc()
             sys.exit(-1)
 
-    def run(self, args):
-        self.flow()
 
     def flow(self):
+        status = 0
         while self.running:
             print "What would you like to do: (r)egister new account, (l)ogin, (s)how account state, (d)eposit, (w)ithdraw, (lo)gout or (q)uit?"
             c = sys.stdin.read(1)
@@ -42,6 +40,13 @@ class Flow(object):
                 self.actions_map[c]()
             else:
                 print "Wrong option"
+        if self.ic:
+            try:
+                self.ic.destroy()
+            except:
+                traceback.print_exc()
+                status = 1
+        sys.exit(status=status)
 
     def register(self):
         print "Please give your PESEL"
@@ -56,6 +61,9 @@ class Flow(object):
         print "Registration succeeded"
 
     def login(self):
+        if self.session_token:
+            print "You're currently logged in"
+            return
         print "Please give your PESEL"
         pesel = sys.stdin.readline()
         print "Please give your password"
@@ -82,8 +90,11 @@ class Flow(object):
 
     def logout(self):
         self.__action("Logout succeeded: ",self.account.logout)
+        self.session_token = None
 
     def quit(self):
+        if self.session_token:
+            self.logout()
         sys.exit(0)
 
     def __action(self,message,action_name,stake=None):
@@ -101,7 +112,6 @@ class Flow(object):
                 print e.description
 
 if __name__ == "__main__":
-    status = Flow().flow()  #main(["BankClient"]+sys.argv,"config.client")
-    sys.exit(status)
+    Flow().flow()
 
 
