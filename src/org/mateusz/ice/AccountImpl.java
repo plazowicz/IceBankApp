@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.mateusz.server.Account;
+import org.mateusz.server.AccountLocator;
 import org.mateusz.server.AccountsContainer;
 import org.mateusz.server.TokenGenerator;
 
@@ -19,12 +20,22 @@ import Ice.Current;
 
 public class AccountImpl extends _AccountDisp {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4047017850639388499L;
+
 	public static final Logger logger = Logger.getLogger(AccountImpl.class.getSimpleName());
 	
 	private Map<String,String> sessions;
+	private AccountLocator locator;
 	
 	public AccountImpl() {
 		sessions = new HashMap<String, String>();
+	}
+	
+	public void setLocator(AccountLocator locator) {
+		this.locator = locator;
 	}
 	
 	@Override
@@ -41,6 +52,9 @@ public class AccountImpl extends _AccountDisp {
 		logger.info("Generating token for new session...");
 		String sessionToken = TokenGenerator.generate();
 		sessions.put(sessionToken,PESEL);
+		if( locator != null ) {
+			locator.addAccount(sessionToken);
+		}
 		return sessionToken;
 	}
 
@@ -49,6 +63,9 @@ public class AccountImpl extends _AccountDisp {
 		String sessionToken = __current.ctx.get("token");
 		if( sessionToken == null || sessions.remove(sessionToken) == null )
 			throw new UserAlreadyLoggedOutException("This user is already logged out");
+		if( locator != null ) {
+			locator.removeAccount(sessionToken);
+		}
 		return true;
 	}
 
