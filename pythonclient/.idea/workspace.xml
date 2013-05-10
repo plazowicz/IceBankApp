@@ -23,7 +23,7 @@
       <file leaf-file-name="client.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="54" selection-start="3311" selection-end="3311" vertical-scroll-proportion="0.5099432">
+            <state line="109" column="23" selection-start="3448" selection-end="3448" vertical-scroll-proportion="0.71100914">
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -333,7 +333,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="54" selection-start="3311" selection-end="3311" vertical-scroll-proportion="0.5099432">
+        <state line="109" column="23" selection-start="3448" selection-end="3448" vertical-scroll-proportion="0.71100914">
           <folding>
             <element signature="e#23#44#0" expanded="true" />
           </folding>

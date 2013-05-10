@@ -2,6 +2,15 @@ __author__ = 'mateusz'
 import sys, traceback
 import Ice
 import Bank
+import signal
+
+flow = None
+
+def signal_handler(signal,frame):
+    flow.shutdown()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT,signal_handler)
 
 class Flow(object):
 
@@ -31,7 +40,6 @@ class Flow(object):
 
 
     def flow(self):
-        status = 0
         while self.running:
             print "What would you like to do: (r)egister new account, (l)ogin, (s)how account state, (d)eposit, (w)ithdraw, (lo)gout or (q)uit?"
             c = sys.stdin.read(1)
@@ -40,13 +48,7 @@ class Flow(object):
                 self.actions_map[c]()
             else:
                 print "Wrong option"
-        if self.ic:
-            try:
-                self.ic.destroy()
-            except:
-                traceback.print_exc()
-                status = 1
-        sys.exit(status=status)
+        self.shutdown()
 
     def register(self):
         print "Please give your PESEL"
@@ -95,7 +97,17 @@ class Flow(object):
     def quit(self):
         if self.session_token:
             self.logout()
-        sys.exit(0)
+        self.running = False
+
+    def shutdown(self):
+        status = 0
+        if self.ic:
+            try:
+                self.ic.destroy()
+            except:
+                traceback.print_exc()
+                status = 1
+        sys.exit(status)
 
     def __action(self,message,action_name,stake=None):
         if not self.session_token:
@@ -112,6 +124,7 @@ class Flow(object):
                 print e.description
 
 if __name__ == "__main__":
-    Flow().flow()
+    flow = Flow()
+    flow.flow()
 
 
